@@ -4,6 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.2.0"
 
 gem "rails",           "7.0.4.3"
+gem "bootstrap-sass",  "3.4.1"
 gem "sassc-rails",     "2.1.2"
 gem "sprockets-rails", "3.4.2"
 gem "importmap-rails", "1.1.5"
@@ -25,6 +26,7 @@ group :development do
   gem "solargraph",          "0.56.2"
   gem "irb",                 "1.10.0"
   gem "repl_type_completor", "0.1.10"
+  gem 'rails_live_reload'
 end
 
 group :test do
