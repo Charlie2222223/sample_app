@@ -1,9 +1,9 @@
-// メニュー操作
+// app/javascript/custom/menu.js
 
-// トグルリスナーを追加してクリックをリッスンする
-document.addEventListener("turbo:load", function() {
+// メニュー操作用の関数を定義
+function addMenuEventListener() {
   let hamburger = document.querySelector("#hamburger");
-  if (hamburger){
+  if (hamburger) {
     hamburger.addEventListener("click", function(event) {
       event.preventDefault();
       let menu = document.querySelector("#navbar-menu");
@@ -19,4 +19,7 @@ document.addEventListener("turbo:load", function() {
       menu.classList.toggle("active");
     });
   }
-});
+}
+
+// ページが読み込まれた時、およびTurboで遷移した時に実行する
+document.addEventListener("turbo:load", addMenuEventListener);
