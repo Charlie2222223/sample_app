@@ -15,12 +15,12 @@ module SessionsHelper
 
   def current_user
     if (user_id = session[:user_id])
-      user = User.find_by(id: user_id)
-      if user && session[:session_token] == user.session_token
-        @current_user = user
-      end
+      # セッションがある場合は、素直にDBから探して @current_user に入れる
+      @current_user ||= User.find_by(id: user_id)
     elsif (user_id = cookies.encrypted[:user_id])
+      # セッションがないが、クッキーがある場合（永続ログイン）
       user = User.find_by(id: user_id)
+      # ここで認証チェック。第12章で改造した引数2つの authenticated? を使う
       if user && user.authenticated?(:remember, cookies[:remember_token])
         log_in user
         @current_user = user
